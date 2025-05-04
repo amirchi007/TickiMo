@@ -39,7 +39,7 @@ public class TicketPurchaseTest {
 
     @Test
     void NotEnoughTicket() {
-        assertThrows(NotEnoughMoneyException.class, () -> service.purchase("Interstellar", 1000, 100000));
+        assertThrows(NotEnoughTicketsException.class, () -> service.purchase("Interstellar", 1000, 100000));
     }
 
 }
