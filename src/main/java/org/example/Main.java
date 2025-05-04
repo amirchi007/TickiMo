@@ -35,7 +35,7 @@ public class Main {
             ticketCount = in.nextInt();
 
             double remainingAmount = service.purchase(movieName, ticketCount, userAmount);
-            System.out.println("✅ خرید موفق! موجودی باقی‌مانده: " + remainingAmount);
+            System.out.println("successful phrase your amount is " + remainingAmount);
 
         } catch (NotFoundMovieException e) {
             System.out.println(" Movie : " + movieName + "not found");

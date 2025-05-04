@@ -11,7 +11,11 @@ import org.example.repo.MovieRepo;
 
 
 public class TicketPurchaseService {
-    MovieRepo movieRepo = new MovieListRepo();
+    MovieRepo movieRepo;
+
+    static {
+        new MovieListRepo();
+    }
 
     public TicketPurchaseService(MovieRepo movieRepo) {
         this.movieRepo = movieRepo;
@@ -23,10 +27,10 @@ public class TicketPurchaseService {
 
         Movie movie = movieRepo.findMovieByTitle(title);
 
-        if (ticketCount <= 0 ) {
+        if (ticketCount <= 0) {
             throw new InvalidTicketCountException("No ticket Avalable");
         }
-        if (movie.getAvailableTickets() < ticketCount){
+        if (movie.getAvailableTickets() < ticketCount) {
             throw new NotEnoughTicketsException("Not enough tickets");
         }
 
