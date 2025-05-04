@@ -5,7 +5,6 @@ import org.example.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 public class MovieListRepo implements MovieRepo {
     private final List<Movie> movies;
@@ -18,13 +17,12 @@ public class MovieListRepo implements MovieRepo {
     }
 
     @Override
-    public Movie findMovieByTitle(String title) {
+    public Movie findMovieByTitle(String title) throws NotFoundMovieException {
         for (Movie movie : movies) {
             if (movie.getTitle().equalsIgnoreCase(title)) {
                 return movie;
             }
         }
-        return null;
-//        return throw new NotFoundMovieException();
+        throw new NotFoundMovieException("Movie not found: " + title);
     }
 }

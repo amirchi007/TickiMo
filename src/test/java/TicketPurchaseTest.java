@@ -1,52 +1,43 @@
 import org.example.TicketPurchaseService;
-import org.example.exceptions.AmountException;
+import org.example.exceptions.NotEnoughMoneyException;
+import org.example.exceptions.NotFoundMovieException;
 import org.example.model.Movie;
-import org.junit.jupiter.api.BeforeAll;
+import org.example.repo.MovieListRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TicketPurchaseTest {
 
     Movie movie;
-    TicketPurchaseService ticketPurchaseService;
+    TicketPurchaseService service;
 
     @BeforeEach
     public void setUp() {
-        movie = new Movie("Avatar", 20, 3);
-        ticketPurchaseService = new TicketPurchaseService();
+        service = new TicketPurchaseService(new MovieListRepo());
     }
 
     @Test
-    void SuccessfulPurchase() {
-//        movie.Purchase(1,5);
-
+    public void SuccessfulPurchase() throws NotEnoughMoneyException {
+        double success = service.purchase("Inception", 2, 200);
+        assertEquals(100, success);
     }
 
     @Test
     void MovieIsNotExist() {
-//        movie.CheckMovieName("Ekhragiha");
-
-
+        assertThrows(NotFoundMovieException.class, () -> service.purchase("Ekhrajiha", 1, 100));
     }
 
     @Test
-    void TicketAmountIsMoreThanUserAmount() {
-
+    void NotEnoughMoney() {
+        assertThrows(NotEnoughMoneyException.class, () -> service.purchase("Avatar", 1, 1));
     }
 
     @Test
-    void TicketSoldOut() {
-
-    }
-
-    @Test
-    void AmountDecreaseAfterSuccessfulPurchase() {
-
-    }
-
-    @Test
-    void CalculateCorrectPurchase() {
-
+    void NotEnoughTicket() {
+        assertThrows(NotEnoughMoneyException.class, () -> service.purchase("Interstellar", 1000, 100000));
     }
 
 }

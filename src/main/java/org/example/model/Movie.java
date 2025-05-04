@@ -1,8 +1,8 @@
 package org.example.model;
 
 public class Movie {
-    private String title;
-    private double price;
+    private final String title;
+    private final double price;
     private int availableTickets;
 
 
