@@ -1,6 +1,6 @@
 package org.example.model;
 
-public class Movie {
+public class    Movie {
     private String title;
     private double price;
     private int availableTickets;
