@@ -1,5 +1,7 @@
 import org.example.TicketPurchaseService;
+import org.example.exceptions.InvalidTicketCountException;
 import org.example.exceptions.NotEnoughMoneyException;
+import org.example.exceptions.NotEnoughTicketsException;
 import org.example.exceptions.NotFoundMovieException;
 import org.example.model.Movie;
 import org.example.repo.MovieListRepo;
@@ -20,7 +22,7 @@ public class TicketPurchaseTest {
     }
 
     @Test
-    public void SuccessfulPurchase() throws NotEnoughMoneyException {
+    public void SuccessfulPurchase() throws NotEnoughMoneyException, NotEnoughTicketsException, InvalidTicketCountException {
         double success = service.purchase("Inception", 2, 200);
         assertEquals(100, success);
     }
