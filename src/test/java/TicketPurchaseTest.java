@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TicketPurchaseTest {
 
-    Movie movie;
     TicketPurchaseService service;
 
     @BeforeEach

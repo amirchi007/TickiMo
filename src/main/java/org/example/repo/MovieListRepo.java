@@ -11,6 +11,7 @@ public class MovieListRepo implements MovieRepo {
 
     public MovieListRepo() {
         movies = new ArrayList<>();
+        
         movies.add(new Movie("Inception", 50, 100));
         movies.add(new Movie("Interstellar", 70, 80));
         movies.add(new Movie("Avatar", 60, 50));
